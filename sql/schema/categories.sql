@@ -1,0 +1,28 @@
+CREATE TABLE Categories
+(
+    CategoryID INT PRIMARY KEY IDENTITY (1, 1),
+    CategoryName VARCHAR(100) NOT NULL UNIQUE,
+    Description TEXT,
+    Created DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Updated DATETIME,
+    IsActive BIT DEFAULT 1,
+    ParentCategoryID INT NULL,
+    CategoryCode CHAR(10) UNIQUE,
+    ImageURL VARCHAR(255),
+    SEO_Title VARCHAR(150),
+    SEO_Description VARCHAR(255),
+    SEO_Keywords VARCHAR(255),
+    DisplayOrder INT DEFAULT 0,
+    BackgroundColor VARCHAR(20),
+    TextColor VARCHAR(20),
+    Icon VARCHAR(100),
+    Slug VARCHAR(100) UNIQUE,
+    MetaJSON NVARCHAR (MAX),
+    CreatedBy INT,
+    UpdatedBy INT,
+    IsFeatured BIT DEFAULT 0,
+    IsArchived BIT DEFAULT 0,
+    ArchivedAt DATETIME,
+    RowVersion ROWVERSION,
+    CONSTRAINT FK_Categories_Parent FOREIGN KEY (ParentCategoryID) REFERENCES Categories (CategoryID)
+);
